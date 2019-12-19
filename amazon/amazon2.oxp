@@ -1,0 +1,8 @@
+doc("https://www.amazon.com/Hello-Name-Doris-Sally-Field/dp/B01CUBR5TU/ref=lp_2649512011_1_2?s=movies-tv&ie=UTF8&qid=1493206124&sr=1-2#customerReviews", [wait=1])
+  //a[@data-hook='see-all-reviews-link-foot']/{click [wait=5]/}
+  //div[1]/span[5]/a[starts-with(., 'See all ')]/{click [wait=5]/}
+  /(//div[@id='cm_cr-pagination_bar']//a[contains(., 'Next')]/{clkwithchange [wait=5]/})*
+    //div[@id='cm_cr-review_list']//div[contains(@class, 'section review')]:<review>
+      [? .//div/a[contains(@title, 'out of 5 stars')]:<rating=substring-before(@title, ' out of 5 stars')>]
+      [? .//div/a[contains(@class, 'review-title')]:<title=string(.)>]
+      [? .//div/span[contains(@class, 'review-text')]:<text=normalize-space(.)>]

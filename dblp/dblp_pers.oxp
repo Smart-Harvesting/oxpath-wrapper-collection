@@ -1,0 +1,8 @@
+doc("https://dblp.org/pers/hd/n/Neumann:Mandy")
+   //ul[@class="publ-list"]/li[@class~="entry"]
+    /cite[@class="data"]:<record>
+       [./span[@itemprop="author"]:<author=normalize-space(.)>]
+       [./span[@class="title"]:<title=normalize-space(.)>]
+       [?.//span[@itemprop="isPartOf"][1]
+         :<publication=normalize-space(.)>]
+       [?./span[@itemprop="pagination"]:<pages=normalize-space(.)>]

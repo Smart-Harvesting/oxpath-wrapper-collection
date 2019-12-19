@@ -1,0 +1,17 @@
+doc("http://www.britishnewspaperarchive.co.uk/search")
+  //input[@id="ExactSearch"]/{click /}
+  //input[@id="BasicSearch"]/{'Dublin'}/{pressenter [wait=2] /}
+  /(//a[contains(@title, 'Forward one page')]/{click /})*
+      //article[@class="bna-card"]:<result>
+      [
+        ./div[@class="bna-card__content"]
+        [
+          .//*[@class="bna-card__title"]:<title=normalize-space(.)>
+        ]
+        [
+          .//*[@class="bna-card__body__description"]:<description=normalize-space(.)>
+        ]
+        [
+          .//*[@class="bna-card__meta"]:<meta=normalize-space(.)>
+        ]
+      ]

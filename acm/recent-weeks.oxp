@@ -1,0 +1,8 @@
+doc('http://dl.acm.org/')
+  //tr/td[./strong[contains(., 'Recently loaded')]]
+    //div[not(contains(./a, 'Volume'))]/a:<record>
+      [? ../text()[1]:<title=normalize-space(.)>]
+      [? .:<doi=concat("10.1145/", replace(@href, ".*?id=(\d*).*", "$1"))>
+      :<url=concat('http://dl.acm.org/citation.cfm?', replace(qualify-url(@href), ".*?(id=\d*).*", "$1"), '&picked=prox')>]
+      [? .:<header=concat(normalize-space(.), ': ', normalize-space(../text()[1]))>]
+      [? .:<conference=normalize-space(.)>]

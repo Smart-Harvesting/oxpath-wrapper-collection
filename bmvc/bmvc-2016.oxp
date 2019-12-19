@@ -1,0 +1,8 @@
+doc('http://www.bmva.org/bmvc/2016/toc.html')
+  //ul[contains(@class, "list")]/li:<record>
+    [? .//*[contains(@class, "title")]:<title=normalize-space(.)>
+      /..:<url=qualify-url(@href)>
+    ]
+    [? .//*[contains(@class, "authors")]:<authors=normalize-space(.)>]
+    [? .//*[contains(@class, "doi")]/*:<doi=normalize-space(.)>]
+    [./preceding::*[contains(@class, "heading")][position()=1]:<header=string(.)>]

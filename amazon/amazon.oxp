@@ -1,0 +1,7 @@
+doc("https://www.amazon.com/Movies/b/ref=MoviesHP_H1_Movies?ie=UTF8&node=2649512011", [wait=1])
+  /(//div[@id='bottomBar']//a[@id='pagnNextLink']/{nextclick /})*{0,10}
+  //body//div[@id='mainResults' or @id='atfResults']/ul/li:<record>
+  [ .//a/h2[contains(@class, ' s-access-title')]:<title=string(.)>]
+  [ .//a[contains(@class, 's-access-detail-page')]:<url=string(@href)>]
+  [ .//following-sibling::div//span/a/i[contains(@class, 'a-icon-star')]/span:<rating=substring-before(., ' out of 5 stars')>]
+  [ ./div/div/div/div[2]/div[2]/div[2]/div[1]/a:<ratingurl=string(@href)>]

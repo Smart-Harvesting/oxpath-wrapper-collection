@@ -1,0 +1,19 @@
+doc('https://www.cambridge.org/core/books/human-and-machine-hearing/3660166B40020EE587D94BB7A309FC12')
+  /(//hr[1]//following::*[contains(@class, 'pagination')][1]//a[..[not(contains(@class, 'unavailable'))]][contains(., 'Next')]/{click /})*
+  //*[starts-with(@class, 'results-listing')]
+    //ul[starts-with(@class, 'details')]:<record>
+      [? ./..[not(contains(@class, 'indent-0'))]/preceding::*[contains(@class, 'indent-0')][1]
+        //li[contains(@class, 'title')]/a[contains(@class, 'part-link')]/text()[normalize-space()]
+          :<header=normalize-space(.)>]
+      [./li[contains(@class, 'title')]
+        [? .:<title=normalize-space(./a[contains(@class, 'part-link')]/text()[normalize-space()])>
+          :<pages=normalize-space(.//*[contains(@class, 'pages')])>
+          :<details=qualify-url(./a[contains(@class, 'part-link')]/@href)>
+        ]
+      ]
+      [? .//li[contains(@class, 'author')]
+          :<authors=normalize-space(string-join(.//a[ contains(@class, "more-by-this-author")]/span[contains(@class, "author-name")], '; '))>
+      ]
+      [? .//li[contains(@class, 'source')]/a
+          :<doi=normalize-space(.)>
+      ]

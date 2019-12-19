@@ -1,0 +1,22 @@
+doc("http://dl.acm.org/results.cfm?query=%2A&filtered=acmPubGroups%2EacmPubGroup%3DDoctoral%20Dissertation&within=owners%2Eowner%3DGUIDE&dte=&bfr=&srt=publicationDate")
+/(//*[@class="pagelogic"][1]/span[./strong]/following-sibling::span[./a][1]/{click[wait=2] /})*
+  //*[@id='results']/div[contains(@class, 'details')]:<record>
+    [? .//div[@class='title']//a:<title=normalize-space(.)>]
+    [? .//div[@class='authors']//a:<author=normalize-space(.)>]
+    [? .//div[@class='source']//span[@class='publicationDate']
+      :<year=replace(normalize-space(.), ".*?(\d{4}).*", "$1")>
+    ]
+    [? .//div[@class='title']//a:<url=qualify-url(@href)>]
+    [? .//div[@class='title']//a/{click[wait=2] /}/.
+      [? .//*[@id='divmain']//span[contains(., '©')]/ancestor::td[1]
+        :<affiliation=normalize-space(substring-before(., '©'))>]
+      [? .//table[contains(., 'Title')]
+        [? .//tr[contains(., 'Pages')]/td[2]:<pages=normalize-space(.)>]
+        [? .//tr[contains(., 'ISBN')]/td[2]:<isbn=normalize-space(.)>]
+      ]
+      [.//a[contains(@href, 'preflayout=flat')]/{click /}
+        //table[contains(., 'Title')]
+          [? .//tr[contains(., 'Pages')]/td[2]:<pages=normalize-space(.)>]
+          [? .//tr[contains(., 'ISBN')]/td[2]:<isbn=normalize-space(.)>]
+      ]
+    ]

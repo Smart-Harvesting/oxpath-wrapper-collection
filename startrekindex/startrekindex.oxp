@@ -1,0 +1,29 @@
+doc('http://www.startrek-index.de/tv/tos/')
+  //body/table[2]/tbody/tr:<result>
+    [
+      ./td[1]/table/tbody
+        [
+          .//td[@class='titel_headline']:<title=normalize-space(.)>
+        ]
+        [
+          .//td[@class='titel_englisch']:<title_eng=normalize-space(.)>
+        ]
+        [
+          ./tr[4]/td/table/tbody/tr//a/{click/}
+            /.:<episode> [
+              .//body/table[2]/tbody/tr/td[1]/table/tbody
+                [
+                  ./tr[1]:<eptitle=normalize-space(.)>
+                ]
+                [
+                  ./tr[2]:<eptitle_eng=normalize-space(.)>
+                ]
+                [
+                  .//p[@id='beschreibung']/following-sibling::p[1]:<description=normalize-space(.)>
+                ]
+                [
+                  .//p[@id='bewertung']/following-sibling::p[1]:<rating_text=normalize-space(.)>
+                ]
+            ]
+        ]
+    ]

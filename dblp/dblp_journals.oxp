@@ -1,0 +1,11 @@
+doc("https://dblp.org/db/journals/")
+    //header[@class~="headline"]:<title=string(./h1)>
+    :<journals>
+    /(./..//div[@id="browse-journals-output"]/p[1]/a[contains(., 'next 100') and string(@class) != "disabled"]/{click /})*
+    /.
+    [        
+        //div[@class="hide-body"]//a:<journal>
+        [
+            .:<name=string(.)>:<url=string(@href)>
+        ]
+    ]       
