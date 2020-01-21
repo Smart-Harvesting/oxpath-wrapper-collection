@@ -1,4 +1,4 @@
-#BICC Example
+# BICC Wrapper
 
 **Goal:** extract info about all the working papers from BICC (Bonn International Center for Conversion):
 *   title
@@ -13,6 +13,6 @@
 *   topic
 *   geoContext
 
-**Note:** this expression has been used in the article written for code4lib journal to demonstrate OXPath on a real-world use case.
+**Peculiarities:** 
 
-**Peculiarities:** ?
+**Note:** this expression has been used in our article written for code4lib journal to demonstrate OXPath on a real-world use case.
