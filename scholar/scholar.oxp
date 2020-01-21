@@ -1,0 +1,7 @@
+doc('https://scholar.google.com')
+ //input[@id='gs_hdr_tsi']/{"OXPath"}
+ /../following-sibling::button/{click/}
+ //*[@id='gs_res_ab_yy-b']/{click}
+ //following::*[@role='menuitemradio'][contains(.,'2016')]/{click/}
+  /(//*[@id='gs_nm']/button[2][not(@disabled)]/{click/})*
+  //div[@class='gs_ri']//h3/a:<title=string(.)>
