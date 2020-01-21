@@ -1,0 +1,6 @@
+doc('https://academic.oup.com/jamia')
+  //a[@class~='advanced-search']/{click /}
+  //*[@id='Citation_Volume']/{"20" /}
+  //*[@id='btnAdvancedCitationFilter']/{click /}
+  //*[contains(@class, 'al-article-box')][1]//*[contains(@class, 'sri-title')]/a/{click /}
+  //*[@class='volume-issue__wrap']/a/{click /}
