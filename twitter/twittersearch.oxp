@@ -1,0 +1,4 @@
+doc("https://twitter.com/search-home")
+  /descendant::field()[1]/{'"conference proceedings" filter:links'}/{pressenter [wait=2]/}
+  //li[@data-item-type="tweet"]:<tweet>
+    //div[@class="js-tweet-text-container"]:<text=string(.)>

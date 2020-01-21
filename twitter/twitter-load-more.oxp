@@ -1,0 +1,12 @@
+doc("https://twitter.com/search-home")
+  //input[@id='search-home-input']/{'holiday'}/{pressenter/}
+  /(//div[contains(@class,'stream-footer')]/{mouseover /})*{0, 4}
+  /.:<count=count(//li[@data-item-type='tweet'])>
+  //li[@data-item-type='tweet']:<tweet>
+    [? .//strong[@class='fullname show-popup-with-id ']:<user_name=string(.)>]
+    [? .//a[starts-with(@class, 'account-group')]/span[@class='username u-dir']:<user_id=string(.)>]
+    [? .//a[@class="tweet-timestamp js-permalink js-nav js-tooltip"]/@title:<date=string(.)>]
+    [? .//p[starts-with(@class,'TweetTextSize')]:<content=normalize-space(.)>]
+    [? .//button[contains(@aria-describedby, 'reply-count')]/span/span:<replies=string(.)>]
+    [? .//button[contains(@aria-describedby, 'retweet-count')]/span/span:<retweets=string(.)>]
+    [? .//button[contains(@aria-describedby, 'favorite-count')]/span/span:<likes=string(.)>]
