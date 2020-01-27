@@ -1,0 +1,15 @@
+doc('${url}')
+  //*[contains(@class, 'contents')]//a[contains(@id, 'title_')]:<record>
+    [.:<details=qualify-url(@href)>]
+    [.:<title=normalize-space(.)>]
+    [? ./preceding::*[contains(@id, 'sppart')][1]:<header=normalize-space(.)>]
+    [? ./{click[wait=2] /}/.
+      [? .:<author-list>
+        [? .//*[contains(@id, 'authname_')]:<author>
+          [? .:<name=normalize-space(.)>]
+          [? .:<orcid=normalize-space(@data-orcid)>]
+        ]
+      ]
+      [? .//*[@id='centerInner']//*[@class='volIssue']:<pages=substring-after(normalize-space(.), "Pages ")>]
+      [? .//script[contains(., "SDM.doi")]:<doi=substring-before(substring-after(normalize-space(.), "SDM.doi = '"), "';")>]
+    ]

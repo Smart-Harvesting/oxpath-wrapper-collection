@@ -1,0 +1,12 @@
+doc("https://www.elsevier.com/books-and-journals/morgan-kaufmann")
+  //*[@id='filters_type']/option[@value='books']/{click /}
+  //*[@id='categories-level-0']//option[@value='computer-science']/{click /}
+  //*[@id='filters_years']
+    /following-sibling::*//ul/li[contains(., '${year}')][1]//input/{click /}
+  //button[contains(., 'Search')][@type='submit']/{click /}
+  /(//ul[contains(@class, 'pagination')]/li[last()][@class='arrow']/{click /})*
+    //*[contains(@class, 'tile-content-cell')]:<record>
+      [? .//*[@class='tile-title']/a:<title=normalize-space(.)>]
+      [? .//*[@class='tile-para']/strong[contains(., 'Print:')]/following::span[1]:<isbn=normalize-space(.)>]
+      [? .//*[@class='tile-para']/strong[contains(., 'eBook:')]/following::span[1]:<online-isbn=normalize-space(.)>]
+      [? ./following::*[@class='cta-primary'][1]:<details=qualify-url(@href)>]

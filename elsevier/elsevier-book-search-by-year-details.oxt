@@ -1,0 +1,13 @@
+doc("${url}")
+  /.:<record>
+        [? .//*[contains(@class, 'subtitle')]
+          :<subtitle=normalize-space(.)>]
+        [? .//*[contains(@class, 'book-info-row')][1]
+          :<authors=normalize-space(string-join(.//*[@itemprop], ', '))>
+          :<type=normalize-space(.//strong)>]
+        [? .//*[contains(@class, 'book-info-row')]//*[contains(./strong, 'Imprint:')]
+          :<publisher=normalize-space(./text()[normalize-space()])>]
+        [? .//*[contains(@class, 'book-info-row')]//*[contains(./strong, 'Published Date:')]
+          :<date=normalize-space(./text()[normalize-space()])>]
+        [?  .//a[contains(@class, 'science-direct-link')]
+          :<url=normalize-space(@href)>]
