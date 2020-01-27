@@ -1,0 +1,19 @@
+doc('https://www.econstor.eu/handle/10419/150069?locale=en')
+  /(//div[@class="prev-next-links"]/a[contains(.,'next')]/{click /})*
+    //table//tr/td[2]/a:<record>/{click /}
+    /*
+    [? //h1[@id="itemtitle"]:<title=normalize-space(.)>]
+    [? //div[contains(@class,'metadataFieldValue')]
+      [./preceding-sibling::div[contains(., 'Authors')]]:<authors=string(.)>
+    ]
+    [? //div[contains(@class,'metadataFieldValue')]
+      [./preceding-sibling::div[contains(., 'Year')]]:<year=string(.)>
+    ]
+    [? //div[contains(@class,'metadataFieldValue')]
+      [./preceding-sibling::div[contains(., 'Abstract')]]:<abstract=string(.)>
+    ][? //div[contains(@class,'metadataFieldValue')]
+      [./preceding-sibling::div[contains(., 'Document Type')]]:<type=string(.)>
+    ]
+    [? //div[contains(@class,'metadataFieldValue')]
+      [./preceding-sibling::div[contains(., 'Citation')]]:<citation=string(.)>
+    ]
