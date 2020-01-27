@@ -1,6 +1,6 @@
 # Sowiport Wrapper
 
-:warn: This wrapper does not work anymore since the Sowiport platform has been shut down.
+:warning: This wrapper does not work anymore since the Sowiport platform has been shut down.
 We provide some screenshots to show how the platform looked like and how the wrapper worked.
 
 ![Sowiport search box](sowiport_solis-1.png)
