@@ -1,16 +1,19 @@
 doc('https://www.cambridge.org/core/browse-subjects/computer-science/listing?sort=canonical.date%3Adesc&aggs%5BproductTypes%5D%5Bfilters%5D=BOOK%2CPUBLISHER_SERIES_COLLECTION')
   //*[@class="cookie-close"]/{click /}
-  //*[@id='startYear']/{"2017" /}
-  //*[@id='endYear']/{"2017" }
+  //*[@id='startYear']/{"${start.year}" /}
+  //*[@id='endYear']/{"${end.year}" }
   /../following-sibling::*/a[contains(., 'Apply')]/{click /}
   /(//hr[1]//following::*[@class='pagination'][1]/li[not(@class='unavailable')]/a[contains(., 'Next')]/{nextclick /})*
   //div[@data-prod-id][.//li[@class="title"]][not(.//*[@class='product-status'][contains(., 'Coming soon')])]:<record>
     [.//li[@class="title"]
       [? ./a[@class="part-link"]
         /.:<title=normalize-space(.)>
-        /.:<url=qualify-url(@href)>] ]
+        /.:<url=qualify-url(@href)>
+      ]
+    ]
     [? .//li[@class="author"][1]:<authors=normalize-space(string-join(./a[@class="more-by-this-author"], ', '))>]
     [? .//li[@class="source"]/a:<doi=normalize-space(.)>]
     [? .//li[@class="published"]
       [? .//*[@class="date"]:<date=normalize-space(.)>]
-      [? .//following-sibling::*[@class="pages"]:<pages=normalize-space(.)>] ]
+      [? .//following-sibling::*[@class="pages"]:<pages=normalize-space(.)>]
+    ]

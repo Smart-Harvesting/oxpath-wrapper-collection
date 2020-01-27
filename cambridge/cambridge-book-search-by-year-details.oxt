@@ -1,0 +1,33 @@
+doc('${url}')
+  //*[@id='maincontent']:<record>
+    [? .//*[contains(@class, 'meta-info')]
+      :<note=normalize-space(.)>
+    ]
+    [? ./preceding::section[contains(@class, 'banner')]:<title=string-join(.//h1/text()[normalize-space()] | .//h2/text()[normalize-space()], ': ')>]
+    [? .//*[contains(@class, 'main-details')]//li[contains(@class, 'author')][1][contains(., 'Edited by')]
+      :<editors=normalize-space(string-join(.//a[ contains(@class, "more-by-this-author")]/span[contains(@class, "author-name")], '; '))>
+    ]
+    [? .//*[contains(@class, 'main-details')]//li[contains(@class, 'author')][1][not(contains(., 'Edited by'))]
+      :<authors=normalize-space(string-join(.//a[ contains(@class, "more-by-this-author")]/span[contains(@class, "author-name")], '; '))>
+    ]
+    [? .//*[contains(@class, 'main-details')]/following-sibling::div
+      [? .//li[./span[1][contains(., 'Publisher:')]]
+        :<publisher=normalize-space(./span[2])>
+      ]
+      [? .//li[./span[1][contains(., 'Online publication date:')]]
+        :<date=normalize-space(./span[2])>
+      ]
+      [? .//li[./span[1][contains(., 'Print publication year:')]]
+        :<year=normalize-space(./span[2])>
+      ]
+      [? .//li[./span[1][contains(., 'Online ISBN:')]]
+        :<isbn=normalize-space(./span[2])>
+      ]
+      [? .//li[./span[1][contains(., 'Book DOI:')]]
+        :<doi=normalize-space(./span[2])>
+      ]
+      [? .//li[./span[1][contains(., 'Series:')]]
+        :<series=replace(normalize-space(./span[2]), "(.*?)\s*?\((\d+)\)", "$1")>/.[contains(., '(')]
+        :<volume=replace(normalize-space(./span[2]), "(.*?)\s*?\((\d+)\)", "$2")>
+      ]
+    ]

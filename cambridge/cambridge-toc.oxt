@@ -1,0 +1,25 @@
+doc('${url}')
+  //*[@class="cookie-close"]/{click /}
+  /(//hr[1]//following::*[@class='pagination'][1]/li[not(@class='unavailable')]/a[contains(., 'Next')]/{click /})*{0,10}
+  //div[@data-prod-id][.//li[@class="title"]]:<record>
+    [.//li[@class="title"]
+      [? ./a[@class="part-link"]
+        /.:<title=normalize-space(.)>
+        /.:<details=qualify-url(@href)>
+      ]
+    ]
+    [? .//li[@class="author"]:<authors=normalize-space(string-join(./a[@class="more-by-this-author"], ', '))>]
+    [? .//li[@class="source"]/a:<doi=normalize-space(.)>]
+    [? .//li[@class="published"]
+      [? .//*[@class="date"]:<date=normalize-space(.)>]
+      [? .//following-sibling::*[@class="pages"]:<pages=normalize-space(.)>]
+    ]
+    [? .//preceding::h4[1]:<section=normalize-space(.)>]
+    [? .//preceding::*[@class="volume"]
+      [? .:<volume=replace(normalize-space(.), ".*?(\d+(-\d+)?)(.*?Issue.*?(\d+(-\d+)?))?.*", "$1")>]
+      [? .:<issue=replace(normalize-space(.), ".*?(\d+(-\d+)?)(.*?Issue.*?(\d+(-\d+)?))?.*", "$4")>]
+    ]
+    [? .//preceding::*[@class="issue-date"]
+      [? .:<month=replace(normalize-space(.), ".*?(\w+).*?(\d{4}).*", "$1")>]
+      [? .:<year=replace(normalize-space(.), ".*?(\w+).*?(\d{4}).*", "$2")>]
+    ]

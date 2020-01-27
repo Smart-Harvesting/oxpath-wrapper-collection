@@ -1,0 +1,9 @@
+doc('${url}')
+  //*[contains(@id, "panel${volume}")]//*[@class="issue"]:<record>
+    [.:<issue=replace(normalize-space(.), ".*?Issue.*?(\d+(-\d+)?|[A-Z]{1}).*", "$1")>]
+    [? ./preceding::*[contains(@href, 'panel')][1]:<volume=replace(normalize-space(.), ".*?Volume.*?(\d+(-\d+)?).*", "$1")>]
+    [? ./following::*[@class="date"][1]
+      [? ./.:<year=replace(normalize-space(.), ".*?(\w+).*?(\d{4}).*", "$2")>]
+      [? ./.:<month=replace(normalize-space(.), ".*?(\w+).*?(\d{4}).*", "$1")>]
+    ]
+    [? ./ancestor::a:<toc=qualify-url(@href)>]

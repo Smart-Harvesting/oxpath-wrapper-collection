@@ -1,4 +1,4 @@
-doc('https://www.cambridge.org/core/books/human-and-machine-hearing/3660166B40020EE587D94BB7A309FC12')
+doc('${url}')
   /(//hr[1]//following::*[contains(@class, 'pagination')][1]//a[..[not(contains(@class, 'unavailable'))]][contains(., 'Next')]/{click /})*
   //*[starts-with(@class, 'results-listing')]
     //ul[starts-with(@class, 'details')]:<record>
