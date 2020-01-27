@@ -1,0 +1,9 @@
+doc('${url}')
+  //*[@id='box6']//li[contains(./a, 'SS-${volume}')]:<record>
+    [? ./a:<volume=replace(normalize-space(.), ".*?SS-(\d{2})-(\d{2}).*", "$1")>]
+    [? ./a:<issue=replace(normalize-space(.), ".*?SS-(\d{2})-(\d{2}).*", "$2")>]
+    [? ./text()[1]
+      :<title=normalize-space(substring-before(., '—'))>
+      :<editors=normalize-space(substring-before(substring-after(., '—'), '('))>
+    ]
+    [? ./a:<toc=qualify-url(@href)>]

@@ -1,0 +1,7 @@
+doc('${url}')
+  //*[@id='box6']//p[preceding::h3[text()='Contents']]:<record>
+    [? ./a
+      :<title=normalize-space(.)>
+      :<doi=qualify-url(@href)>
+    ]
+    [? ./i:<authors=normalize-space(.)>]

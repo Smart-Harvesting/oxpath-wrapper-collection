@@ -1,0 +1,3 @@
+doc('${url}')
+  //*[@id='box6']:<record>
+    [? ./div/p[1]/b:<date=normalize-space(.)>]

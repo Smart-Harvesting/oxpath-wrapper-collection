@@ -1,0 +1,16 @@
+doc('${url}')
+  //*[@id='box6']:<record>
+    [? ./h2/span:<symposium=normalize-space(.)>]
+    [? .//b
+      :<header=normalize-space(.)>
+      :<year=replace(normalize-space(.), ".*?(\d{4}).*", "$1")>
+    ]
+    [? ./div/p[2]
+      [ ./text()[1]:<editors=normalize-space(.)>]
+      [ ./i:<type=normalize-space(.)>]
+    ]
+    [? ./div/p[3]
+      [? ./text()[1]:<series=concat("AAAI ", replace(normalize-space(.), "(.*?) ?(([A-Z]{2})-(\d{2})-(\d{2})).*", "$1"))>]
+      [? ./text()[1]:<volume=replace(normalize-space(.), "(.*?) ?(([A-Z]{2})-(\d{2})-(\d{2})).*", "$2")>]
+      [? ./text()[2][contains(., 'Published by')]:<address=replace(normalize-space(.), ".*?, ?(.*)\..*", "$1")>]
+    ]
