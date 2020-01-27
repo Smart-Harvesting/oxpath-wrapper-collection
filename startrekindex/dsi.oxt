@@ -1,0 +1,30 @@
+doc('${url}')
+  //body/table[2]/tbody/tr:<result>
+    [
+      ./td[1]/table/tbody
+        [
+          .//td[@class='titel_headline']:<title=normalize-space(.)>
+        ]
+        [
+          .//td[@class='titel_englisch']:<title_eng=normalize-space(.)>
+        ]
+        [
+          ./tr[4]/td/table/tbody/tr[3]//a/{click /}
+            /(//div/a[text()='>>>']/{nextclick /})*
+            /.:<episode> [
+              .//body/table[2]/tbody/tr/td[1]/table/tbody
+                [
+                  ./tr[1]:<eptitle=normalize-space(.)>
+                ]
+                [
+                  ./tr[2]:<eptitle_eng=normalize-space(.)>
+                ]
+                [
+                  .//*[preceding-sibling::p[@id='beschreibung']][following-sibling::p[@id='bewertung']]:<description=normalize-space(.)>
+                ]
+                [
+                  .//*[preceding-sibling::p[@id='bewertung']]:<rating_text=normalize-space(.)>
+                ]
+            ]
+        ]
+    ]
