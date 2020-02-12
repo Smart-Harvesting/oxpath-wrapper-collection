@@ -1,0 +1,5 @@
+doc('${url}')
+  //*[contains(@class, 'listview ')]//*[@class='linktosingle']:<record>
+    [.:<toc=qualify-url(@href)>
+      :<volume=replace(., ".*?(\d+)\-(\d{4}).*", "$2")>
+    ]

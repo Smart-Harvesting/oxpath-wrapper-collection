@@ -1,0 +1,12 @@
+doc('${url}')  
+  //*[@class='item']:<record>
+    [.:<volume='${volume}'>]
+    [.:<year='${year}'>]
+    [? ./*[contains(@class, 'author')]:<authors=normalize-space(.)>]
+    [? ./*[contains(@class, 'title')]:<title=normalize-space(.)>
+      /a:<details=qualify-url(@href)>
+    ]
+    [? .//*[@title][contains(., 'Open Access')]:<open-access>]
+    [? ./*[contains(@class, 'pageBegin')]:<pages=normalize-space(.)>]
+    [? ./*[contains(@class, 'doi')]:<doi=normalize-space(.)>]
+    [? ./preceding::h2[1]:<section=normalize-space(.)>]

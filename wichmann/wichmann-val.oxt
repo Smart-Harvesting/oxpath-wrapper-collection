@@ -1,0 +1,3 @@
+doc('${url}')
+  //h2[contains(., 'Journal ')]
+    :<title=normalize-space(.)>
