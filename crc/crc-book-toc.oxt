@@ -1,0 +1,11 @@
+doc('${url}')
+  //*[@id='bookContentContainer']//*[@class='articleListing_links'][contains(., 'Abstract')]/ancestor::li:<record>
+    [? .//*[@class='articleListing_links'][contains(., 'Abstract')]
+      :<details=qualify-url(@href)>
+    ]
+    [? .:<authors=normalize-space(string-join(.//*[contains(@class, 'hlFld-ContribAuthor')], "; "))>]
+    [? .//*[@class='articleListing_links'][contains(., 'Abstract')]/{click[wait=1] /}/.
+      [? .//*[@id='abstractBodyContainer']//*[@class='abstractHeader']/h2:<title=normalize-space(.)>]
+      [? .//*[@id='abstractBodyContainer']//*[@class='pages']:<pages=normalize-space(.)>]
+      [? .//*[@id='abstractBodyContainer']//*[@class="doi"]//text()[normalize-space()]:<doi=normalize-space(.)>]
+    ]

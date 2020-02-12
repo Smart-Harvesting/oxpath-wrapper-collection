@@ -1,0 +1,11 @@
+doc('http://www.crcnetbase.com/doi/book/10.1201/9781315400624')
+  //*[@id='bookContentContainer']//*[@class='articleListing_links'][contains(., 'Abstract')]/ancestor::li:<record>
+    [? .//*[@class='articleListing_links'][contains(., 'Abstract')]
+      :<details=qualify-url(@href)>
+    ]
+    [? .//label:<title=normalize-space(.)>]
+    [? .:<authors=normalize-space(string-join(.//*[contains(@class, 'hlFld-ContribAuthor')], "; "))>]
+    [? .//*[@class='articleListing_links'][contains(., 'Abstract')]/{click[wait=2] /}/.
+      [? .//*[@id='bookContentContainer']//*[@class='pages']:<pages=normalize-space(.)>]
+      [? .//*[@id='bookContentContainer']//*[@class="doi"]/text()[normalize-space()]:<doi=normalize-space(.)>]
+    ]

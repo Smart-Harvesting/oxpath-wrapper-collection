@@ -1,0 +1,26 @@
+doc("http://www.crcnetbase.com/action/doSearch?AfterYear=2017&BeforeYear=2017")
+  //*[@class='subjectCheckbox'][contains(., 'Information Technology')]/{click/}
+  //*[@class='panel_top']/*[contains(@class, 'submitSearchForm')]/{click/}
+  //*[@id='sortBy1']/option[@value='Ppub']/{click/}
+  //*[@id='searchResultPubTitleTab']//a/{click/}
+  /(//*[@class='paginationControl'][1]//a[@class='nextPage']/{click[wait=2]/})*
+    //*[contains(@class, 'searchResultItem')]:<record>
+      [? .//p[@class='title']
+        :<title=normalize-space(.)>]
+      [? .//p[@class='searchSubtitle'][./text()]
+        :<subtitle=normalize-space(.)>]
+      [? .//p[@class='bookAuthors']
+        :<authors=normalize-space(.)>]
+      [? .//p[@class='searchNLM_year']/text()[normalize-space()]
+        :<year=normalize-space(substring-after(., ':'))>]
+      [? .//p[@class='searchIsbn']/text()[normalize-space()]
+        :<isbn=normalize-space(substring-after(., ':'))>]
+      [? .//p[@class='searchIsbn']/*[@class='eBookISBN']
+        :<online-isbn=normalize-space(substring-after(., ':'))>]
+      [? .//p[@class='title']//a
+        :<toc=qualify-url(@href)>
+      ]
+      [? .//p[@class='title']//a/{click /}/.
+        [? .//*[@id='bookContentContainer']//*[@class='bookMeta']/text()[normalize-space()]:<publisher=normalize-space(.)>]
+        [? .//*[@id='bookContentContainer']//*[@class="doi"]//text()[normalize-space()]:<doi=normalize-space(.)>]
+      ]
