@@ -1,0 +1,3 @@
+doc('${url}')
+  //*[@class='mainContent']//h1
+    :<title=normalize-space(.)>

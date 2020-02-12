@@ -1,0 +1,16 @@
+doc('${url}')
+  //*[@class='cc_btn cc_btn_accept_all']/{click /}
+  //*[@id='contents']/{click[wait=5] /}
+  //*[@id='cresult']//a[contains(@href, '/Year/')][contains(., '${year}')]/{click /}
+    //*
+      [.//a]
+      [@class='clickableRow']
+      [not(contains(., 'Issue-in-Progress'))]
+      [not(contains(., 'In preparation'))]
+      [contains(./td[2], '${volume}')]
+      :<record>
+        [? ./td[2]:<volume=normalize-space(.)>]
+        [? ./td[3]:<issue=replace(normalize-space(.), ".*?((\d+)(-?\d+)?).*", "$1")>
+          /a:<toc=qualify-url(@href)>
+        ]
+        [? ./preceding::td[@class='strong' and @colspan='2'][1]:<year=normalize-space(.)>]

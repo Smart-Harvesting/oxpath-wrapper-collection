@@ -1,0 +1,5 @@
+doc('${url}')
+  //*[@id='searchtopbar']/input/{"${journal.title} ${volume}:1-" }/{pressenter /}
+    //*[@id='hits-container']//*[@class='ais-hits--item']
+      [.//div[@class='hit-item-date'][contains(., '${journal.title}')][contains(., '${volume}:1')]][1]
+        //div[@class='hit-item-date']/text()[2]:<year=substring-before(normalize-space(.), ';')>

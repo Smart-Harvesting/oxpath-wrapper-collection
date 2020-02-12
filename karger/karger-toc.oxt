@@ -1,0 +1,22 @@
+doc('${url}')
+  //tr[.//h2]:<record>
+    [.:<volume='${volume}'>]
+    [.:<issue='${issue}'>]
+    [.:<year='${year}'>]
+    [.:<title=normalize-space(string-join(.//h2/*/text(), ': '))>]
+    [? .//*[@class='autoren']:<author-list>
+      [? ./a:<author>
+        [? .:<name=normalize-space(.)>]
+        [? .:<orcid=substring-after(normalize-space(@href), 'http://orcid.org/')>]
+      ]
+      [? ./text()[normalize-space()]:<author>
+        [? .:<name=normalize-space(.)>]
+      ]
+    ]
+    [? .//*[@class='autoren']/following-sibling::text()[1]
+      :<pages=replace(normalize-space(.), ".*?:(.*?)\((.*)\).*", "$1")>
+      :<doi=replace(normalize-space(.), ".*?:(.*?)\((.*)\).*", "$2")>
+    ]
+    [? ./ancestor::*[@id='web']//*[@class='inhalt']//h3
+      :<section=normalize-space(.)>]
+    [? ./preceding::*[@class='sectiontitle'][string-length(./text()) > 1][1]:<subsection=normalize-space(string-join(text(), ': '))>]
