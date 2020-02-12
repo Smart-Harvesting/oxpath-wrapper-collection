@@ -1,0 +1,22 @@
+doc('https://mitpress.mit.edu/cs')
+  //*[contains(@class, 'view-discipline-term-list')]//li[contains(., '${category}')]//a/{click /}
+  /(//*[contains(@class, 'pager-top')]//*[contains(@class, 'pager-next')]/a/{click /})*
+    //*[@id='sub-discipline']//*[contains(@class, 'view-booklist')]//*[contains(@class, 'views-row')]:<record>
+      [? .//*[contains(@class, 'field-title')]
+        :<title=normalize-space(.)>]
+      [? .//*[contains(@class, 'field-subtitle')]
+        :<subtitle=normalize-space(.)>]
+      [? .//*[contains(@class, 'field-contributors')][contains(.//span/@itemprop, 'editor')]
+        :<editors=string-join(.//span[@itemprop='name'], '; ')>]
+      [? .//*[contains(@class, 'field-contributors')][not(contains(.//span/@itemprop, 'editor'))]
+        :<authors=string-join(.//span[@itemprop='name'], '; ')>]
+      [? .//*[contains(@class, 'field-title')]//a/{click /}
+        /.[? .:<details=current-url()>]
+          [? .//*[@itemprop='publisher']
+            :<publisher=normalize-space(.//*[@itemprop='name']/@content)>]
+          [? .//*[@itemprop='dateCreated']
+            :<year=substring-before(@content, '-')>]
+          [? .//*[@itemprop='isbn']
+            :<isbn=normalize-space(.)>]
+          [? .:<note=normalize-space(string-join(.//*[contains(@class, 'mitpress-specifications__binding')], '; '))>]
+      ]
