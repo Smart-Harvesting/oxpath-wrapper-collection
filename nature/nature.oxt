@@ -1,0 +1,5 @@
+doc("file://${filepath}")
+//table/tbody/tr/td[1]/table/tbody/tr/td[2]/table[2]/tbody/tr[1]/td/table[1]/tbody/tr[1]/td[1]/table[2]/tbody/tr/td/span/
+time:<embargo=string(.)>
+/preceding::table/tbody/tr/td/table/tbody/tr/td[2]/table[2]/tbody/tr/td/table/tbody/tr/td/
+a:<title=string(.)>
