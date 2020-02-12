@@ -1,0 +1,10 @@
+doc('${url}')
+  //button[contains(@class,"filter-calender")]
+    /{click}
+  //following::input[contains(@name, "start")]
+    /{"${start.month}/${start.day}/${start.year}"}
+  /following::input[contains(@name,"end")]
+    /{"${end.month}/${end.day}/${end.year}"}/{pressenter}
+  /following::button[contains(@class,"applyBtn")]
+    /{click/}
+      /(//*[contains(@class, "container-grid-box")][last()]/{mouseover /})*{0,${times}}

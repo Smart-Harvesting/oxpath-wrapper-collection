@@ -1,0 +1,11 @@
+doc('${url}')
+  //*[contains(@class, "container-grid-box")]
+    [.//*[contains(@class, "-heading")]]
+    [.//*[contains(@class, "teaser-meta") and
+      contains(string(.), "Published on")]]
+    /.:<record>
+      [.//*[contains(@class, "-heading")]:<title=normalize-space(.)>]
+      [.//*[contains(@class, "teaser-authors")]:<authors=normalize-space(.)>]
+      [.//*[contains(@class, "teaser-meta")]:<doi=normalize-space(.)>
+        /strong:<date=substring-after(., "Published on ")>]
+      [.//*[contains(@class, "teaser-text")]/strong:<type=string(.)>]

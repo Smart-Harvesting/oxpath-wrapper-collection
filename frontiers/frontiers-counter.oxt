@@ -1,0 +1,16 @@
+doc('${url}')
+  //button[contains(@class,"filter-calender")]
+    /{click}
+  //following::input[contains(@name, "start")]
+    /{"${start.month}/${start.day}/${start.year}"}
+  /following::input[contains(@name,"end")]
+    /{"${end.month}/${end.day}/${end.year}"}/{pressenter}
+  /following::button[contains(@class,"applyBtn")]
+    /{click/}
+      //*[@*[contains(., "article-sorting")]]
+        //*[@*[contains(., "title-number")]]
+          [./following::*[contains(@class, "container-grid-box")]
+            [.//*[contains(@class, "-heading")]]
+            [.//*[contains(@class, "teaser-meta")
+              and contains(string(.), "Published on")]]
+          ]:<count=string(.)>
