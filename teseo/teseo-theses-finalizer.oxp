@@ -1,0 +1,5 @@
+doc("https://www.educacion.gob.es/teseo/actualizarPaginacion.do")
+  //*[@id='listado']/following::*[contains(@class, 'paginacion')]/*[not(contains(., 'Anterior'))][number()][1]/{click /}
+  //*[@id='listado']/following::*[contains(@class, 'paginacion')]/*[not(contains(., 'Anterior'))][number()][last()]/{click /}
+  //*[contains(@class, 'seleccion')]//a[@title="Seleccionar todos"]/{click /}
+  //*[@id='listado']//*[@class='botones-listado-float']/a[1]/{click /}

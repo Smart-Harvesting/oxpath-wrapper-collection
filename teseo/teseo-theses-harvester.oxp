@@ -1,0 +1,9 @@
+doc("https://www.educacion.gob.es/teseo/mostrarSeleccion.do")
+  /(.//following::*[contains(@class, 'paginacion')][last()]/*[not(@class='off')][contains(., 'Siguiente')]/{click /})*
+    //*[@id='contenido']/*[@class='datos-resultado']:<record>
+      [? ./ul/li[contains(./strong, 'Título')]/text()[normalize-space()]:<title=normalize-space(.)>]
+      [? ./ul/li[contains(./strong, 'Autor')]/text()[normalize-space()]:<author=normalize-space(.)>]
+      [? ./ul/li[contains(./strong, 'Universidad')]/text()[normalize-space()]:<affiliation=normalize-space(.)>]
+      [? ./ul/li[contains(./strong, 'Fecha de Lectura')]/text()[normalize-space()]:<date=normalize-space(.)>]
+      [? ./ul/li[contains(./strong, 'Fichero de tesis')]/following-sibling::ul[1]//a[1]:<url=qualify-url(@href)>]
+      [? ./ul/li[contains(./strong, 'Marcador')]/a[contains(@href, 'mostrar')]:<details=qualify-url(@href)>]

@@ -1,0 +1,9 @@
+doc("https://www.educacion.gob.es/teseo/irGestionarConsulta.do")
+  //*[@id='idUni']/option[@value='${university.code}']/{click /}
+  //*[@id='cursoDesde']/{"${start.year.1}" /}
+  //*[@id='cursoDesde2']/{"${start.year.2}" /}
+  //*[@id='cursoHasta']/{"${end.year.1}" /}
+  //*[@id='cursoHasta2']/{"${end.year.2}" /}
+  //*[@id='ConsultaForm']//input[@type='submit']/{click /}
+  /(.//following::*[contains(@class, 'paginacion')][last()]/*[not(@class='off')][contains(., 'Siguiente')]/{click /})*
+    /.[? .//*[contains(@class, 'seleccion')]//a[@title="Seleccionar todos"]/{click /}]
