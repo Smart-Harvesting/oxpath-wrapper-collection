@@ -1,0 +1,19 @@
+doc('${url}')
+  /.[? .//a[@class='btn']/{click /}]
+  //*[contains(@class, "tocArticleEntry")][.//*[contains(@class, '_title')]]:<record>
+    [.:<volume='${volume}'>]
+    [.:<issue='${issue}'>]
+    [.:<year='${year}'>]
+    [.//*[contains(@class, '_title')]
+      :<title=normalize-space(.)>
+      /a:<doi=normalize-space(@href)>]
+    [? .//*[@class="articleEntryAuthorsLinks"]
+      :<authors=normalize-space(string-join(./span, ', '))>]
+    [? .//preceding::h3[./span[@class="special"]]
+      :<section=normalize-space(.)>]
+    [? .//preceding::h3
+      :<section=normalize-space(.)>]
+    [? .//preceding::*[@class="tocHeading"][1]
+      :<subsection=normalize-space(.)>]
+    [? .//*[contains(@class, 'tocPageRange')]
+      :<pages=normalize-space(substring-after(., ':'))>]

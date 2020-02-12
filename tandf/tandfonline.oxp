@@ -1,0 +1,30 @@
+doc('http://www.tandfonline.com/loi/wjlm20')
+  //*[contains(@class, 'pageBody')]//h1/a[contains(@href, 'current')]/{clkwithchange [wait=10]/}
+  /*
+  [? .//div[@class~="journalMetaTitle"]/h1:<jtitle=normalize-space(.)>]
+  [? .//div[@class="yearSliderInner"]/a/{click [wait=10]/}
+  /*
+  [? //div[@class="loi-issues-scroller"]/a/{click [wait=10]/}
+  //*[@class="tocArticleEntry"][.//*[contains(@class, 'title')]]:<record>
+    [.:<volume='9'>]
+    [.:<issue='6'>]
+    [.:<year='2016'>]
+    [.//*[contains(@class, 'title')]
+      :<title=replace(normalize-space(.), "<", "&lt;")>]
+    [? .//*[contains(@class, 'type')]
+      :<type=normalize-space(.)>]
+    [? .//*[@class="articleEntryAuthorsLinks"]
+      :<authors=normalize-space(string-join(./span, ', '))>]
+    [? .//preceding::h3[./span[@class="special"]]
+      :<section=normalize-space(.)>]
+    [? .//preceding::h3
+      :<section=normalize-space(.)>]
+    [? .//preceding::*[@class="tocHeading"][1]
+      :<subsection=normalize-space(.)>]
+    [? .//*[contains(@class, 'title')]/a
+      :<ee=concat('http://dx.doi.org/',
+        replace(normalize-space(@href), ".*?/(10\..*)", "$1"))>]
+    [? .//*[contains(@class, 'tocPageRange')]
+      :<pages=normalize-space(substring-after(., ':'))>]
+  ]
+]

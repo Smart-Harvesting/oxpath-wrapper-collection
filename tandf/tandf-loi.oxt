@@ -1,0 +1,9 @@
+doc('${url}')
+  /.[? .//a[@class='btn']/{click /}]
+  //ul[@class='list-of-issues']//li[contains(@id, 'vol_${volume}')][1]/a/{mouseover}/{click}
+    /..//li[not(./img[contains(@alt, 'Progress')])]:<record>
+      [? ./ancestor::li:<volume=replace(normalize-space(.), "Volume (\d+(-\d+)?).*", "$1")>]
+      [? ./a/div:<issue=replace(normalize-space(.), "Issue (\d+(-\d+)?).*", "$1")>]
+      [? .//*[@id='loiIssueCoverDateText']:<year=normalize-space(.)>]
+      [? ./a:<toc=concat('http://www.tandfonline.com', replace(normalize-space(@href), "(.*)\?.*", "$1"))>]
+      
