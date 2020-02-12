@@ -1,0 +1,4 @@
+doc("file://${filepath}")
+/body/p/strong/span[contains(text(),"EMBARGO")]:<embargo=substring-after(.,"EMBARGO: ")>
+/preceding::ul/li
+:<title=string(.)>
