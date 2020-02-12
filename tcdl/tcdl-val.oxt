@@ -1,0 +1,3 @@
+doc("${url}")
+  //*[@id='bulletinTitle']
+    :<title=normalize-space(.)>

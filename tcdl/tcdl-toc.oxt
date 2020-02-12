@@ -1,0 +1,30 @@
+doc("${url}")
+  /.[? .//*[@class='content']//p[./a]:<record>
+    [? ./a[1]:<title=normalize-space(.)>]
+    [? ./i:<authors=replace(normalize-space(.), "^By (.*)$", "$1")>]
+    [? ./em:<authors=replace(normalize-space(.), "^By (.*)$", "$1")>]
+    [? ./a[1]:<details=qualify-url(@href)>]
+    [? ./preceding::p[@class='title'][1]:<section=normalize-space(.)>]
+    [? ./preceding::*[@class='volNum']/text()[normalize-space()][1]
+      :<volume=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$1")>
+      :<issue=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$2")>
+    ]
+    [? ./preceding::*[@class='volNum']/text()[normalize-space()][2]
+      :<month=replace(normalize-space(.), ".*?(\w+).*?(\d+).*", "$1")>
+      :<year=replace(normalize-space(.), ".*?(\w+).*?(\d+).*", "$2")>
+    ]
+  ]
+  [? .//td//p[.//i]:<record>
+    [? .//a:<title=normalize-space(.)>]
+    [? .//i:<authors=replace(normalize-space(.), "^By (.*)$", "$1")>]
+    [? .//a:<details=qualify-url(@href)>]
+    [? ./preceding::h2[1]:<section=normalize-space(.)>]
+    [? ./preceding::p[contains(., 'Volume')]/text()[normalize-space()][1]
+      :<volume=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$1")>
+      :<issue=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$2")>
+    ]
+    [? ./preceding::p[contains(., 'Volume')]/text()[normalize-space()][2]
+      :<month=replace(normalize-space(.), ".*?(\w+).*?(\d+).*", "$1")>
+      :<year=replace(normalize-space(.), ".*?(\w+).*?(\d+).*", "$2")>
+    ]
+  ]

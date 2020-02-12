@@ -1,0 +1,11 @@
+doc("${url}")
+  //*[@class='volNum']/text()[normalize-space()][1]:<record>
+    [.:<volume=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$1")>]
+    [.:<issue=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$2")>]
+    [.:<toc=current-url()>]
+  /preceding::*[@class='navLink']/a[contains(., 'Current Issue')]
+    /preceding::*[@id='header']//a[contains(., 'Back Issues')]/{click /}
+  //*[@class='content']//a:<record>
+    [.:<volume=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$1")>]
+    [.:<issue=replace(normalize-space(.), ".*?(\d+).*?(\d+).*", "$2")>]
+    [.:<toc=normalize-space(@href)>]
