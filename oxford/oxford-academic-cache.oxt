@@ -1,0 +1,2 @@
+doc('${url}')
+  /.:<html=page-content()>

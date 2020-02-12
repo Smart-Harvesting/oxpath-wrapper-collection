@@ -1,0 +1,14 @@
+doc('${url}')
+  //*[contains(@class, 'article-items')][.//*[contains(@class, 'item-title')]]:<record>
+    [.:<volume='${volume}'>
+      :<issue='${issue}'>
+    ]
+    [? ./preceding::h2/strong
+      :<section=normalize-space(.)>]
+    [? ./preceding::h4[@data-level="1"][1]
+      :<subsection=normalize-space(.)>]
+    [? .[./preceding::h4[@data-level="1"][1]]
+      /preceding::h4[@data-level="2"][1]
+        :<subsubsection=normalize-space(.)>]
+    [.//*[contains(@class, 'item-title')]/a
+      :<details=qualify-url(@href)>]

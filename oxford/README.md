@@ -7,3 +7,35 @@ The wrapper clicks on the "Advanced Search" Link, then fills in the "Volume" for
 Then, the first title on the result list is clicked to get to its detail page.
 
 In a real world example, you would add a loop to click on all the titles in the result list. Then you would add extraction markers to extract data from the detail page of each.
+
+## oxford-academic-cache.oxt
+
+TODO
+
+## oxford-academic-details.oxt
+
+TODO
+
+## oxford-academic-loi.oxt
+
+TODO
+
+## oxford-academic-toc.oxt
+
+TODO
+
+## oxford-academic-val.oxt
+
+TODO
+
+## oxford-new-loi.oxt
+
+TODO
+
+## oxford-new-toc.oxt
+
+TODO
+
+## oxford-new-val.oxt
+
+TODO

@@ -1,0 +1,19 @@
+doc("${url}")
+  //*[contains(@class, 'widget-items')][./h1]:<record>
+    [.:<volume='${volume}'>
+      :<issue='${issue}'>
+      :<section='${section}'>
+      :<subsection='${subsection}'>
+      :<subsubsection='${subsubsection}'>
+    ]
+    [.//h1:<title=normalize-space(.)>]
+    [? .//*[@class='wi-authors']
+      :<authors=string-join(.//a[@class='linked-name'], '; ')>]
+    [? .//*[contains(@class, "citation-primary")]
+      :<pages=normalize-space(substring-after(., ":"))>]
+    [? .//*[contains(@class, "citation-doi")]
+      :<doi=normalize-space(.)>]
+    [? ./preceding::*[@class='ii-pub-date']
+      :<year=replace(normalize-space(.), ".*?\d*.*?(\w+).*?(\d{4}).*", "$2")>
+      :<month=replace(normalize-space(.), ".*?\d*.*?(\w+).*?(\d{4}).*", "$1")>
+    ]

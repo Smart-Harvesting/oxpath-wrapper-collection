@@ -1,0 +1,6 @@
+ doc('${url}')
+  //*[@class='issue-link']/a:<record>
+    [? .:<volume=replace(normalize-space(.), ".*?(\d+).*?([a-z]?\d+).*", "$1")>]
+    [? .:<issue=replace(normalize-space(.), ".*?(\d+).*?([a-z]?\d+).*", "$2")>]
+    [? ./preceding::*[@class="issue-list-month"][1]:<month=normalize-space(.)>]
+    [? .:<url=concat('${url.base}', substring-after(normalize-space(@href), '/'))>]

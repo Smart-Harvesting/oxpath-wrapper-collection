@@ -1,0 +1,9 @@
+doc('${url}')
+  /(//*[@id='YearsList']
+      [.//following::*[@id='IssuesList']/option[contains(., 'Volume ${volume}')]]
+    /option[@selected]/preceding-sibling::*[1]
+      /{click /})*{0,5}
+        //*[@id='IssuesList']/option[contains(., 'Volume ${volume}')]:<record>
+          [.:<volume=replace(normalize-space(.), ".*?Volume.*?(\d+(-\d+)?).*?Issue.*?(\d+(-\d+)?).*", "$1")>]
+          [.:<issue=replace(normalize-space(.), ".*?Volume.*?(\d+(-\d+)?).*?Issue.*?(\w?\d+(-\w?\d+)?).*", "$3")>]
+          [.:<toc=qualify-url(@value)>]

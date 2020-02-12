@@ -1,0 +1,2 @@
+doc('${url}')
+  //h1[@class='journal-title']/a:<title=normalize-space(.)>

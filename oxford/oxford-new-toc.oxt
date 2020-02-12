@@ -1,0 +1,16 @@
+doc('${url}')
+  //*[@class~='toc-item'][.//*[@class~='highwire-cite-title']]
+    /.:<record>
+      [.//*[@class~='highwire-cite-title']:<title=normalize-space(.)>]
+      [.//*[@class~='highwire-cite-authors']:<authors=normalize-space(.)>]
+      [.//*[@class~='highwire-cite-doi']/a:<ee=normalize-space(.)>]
+      [.//*[@class~='highwire-cite-pages']:<pages=normalize-space(.)>]
+      [.//*[@class~='highwire-cite-fpub']:<date=substring-after(substring-before(., ' ('), ': ')>]
+      [./preceding::*[@class~='highwire-vol-issue-date']/
+        .:<volume=replace(normalize-space(.), ".*?(\d+), Issue (([a-z]+ ?)?\d+).*?(\d+).*?(\w+).*?(\d+)$", "$1")>/
+        .:<issue=replace(normalize-space(.), ".*?(\d+), Issue (([a-z]+ ?)?\d+).*?(\d+).*?(\w+).*?(\d+)$", "$2")>/
+        .:<start-day=replace(normalize-space(.), ".*?(\d+), Issue (([a-z]+ ?)?\d+).*?(\d+).*?(\w+).*?(\d+)$", "$4")>/
+        .:<month=replace(normalize-space(.), ".*?(\d+), Issue (([a-z]+ ?)?\d+).*?(\d+).*?(\w+).*?(\d+)$", "$5")>/
+        .:<year=replace(normalize-space(.), ".*?(\d+), Issue (([a-z]+ ?)?\d+).*?(\d+).*?(\w+).*?(\d+)$", "$6")>
+      ]
+      [? ./preceding::h2[1]:<section=normalize-space(.)>]
