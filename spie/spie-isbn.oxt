@@ -1,0 +1,3 @@
+doc('${url}')
+  //*[@id='pub-section']/div[2]/text()[4]
+    :<isbn=replace(normalize-space(.), ".*?(\d+).*$", "$1")>

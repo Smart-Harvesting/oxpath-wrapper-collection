@@ -1,0 +1,3 @@
+doc('${url}')
+  //*[contains(@class, 'currentJournalInfo')]
+    :<title=normalize-space(.)>

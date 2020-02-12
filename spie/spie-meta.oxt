@@ -1,0 +1,12 @@
+doc('${url}')
+  //*[@class='pageHeader']/h1:<record>
+    [? ./span[1]:<volume=substring-after(., 'Volume ')>
+      /following-sibling::span:<series=string(.)>
+      /../following-sibling::*[@class='citation']
+        /*[@class='authors']:<editors=normalize-space(.)>
+        /../text()[2]
+          :<address=replace(normalize-space(.),  "(.*?) \| (\w+).*?(\d+).*?(\d+)$", "$1")>
+          :<month=replace(normalize-space(.),  "(.*?) \| (\w+).*?(\d+).*?(\d+)$", "$2")>
+          :<start-day=replace(normalize-space(.),  "(.*?) \| (\w+).*?(\d+).*?(\d+)$", "$3")>
+          :<year=replace(normalize-space(.),  "(.*?) \| (\w+).*?(\d+).*?(\d+)$", "$4")>
+    ]

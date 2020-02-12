@@ -1,0 +1,16 @@
+doc('${url}')
+  //*[@class='articleContent'][.//*[@class='articleTitle']]
+    /.:<record>
+      [.:<volume="${volume}">]
+      [.:<issue="${issue}">]
+      [.:<year="${year}">]
+      [.//*[@class='articleTitle']
+        :<title=normalize-space(.)>]
+      [? .//*[@class='authors']
+        :<authors=normalize-space(.)>]
+      [? .//*[@class='doi']
+        :<doi=substring-after(., ': ')>]
+      [? .//*[@class='articleInfo']
+        :<pages=replace(normalize-space(.), ".*, ([A-Z\d]+) \((.*)\);$", "$1")>]
+      [? ./preceding::h2[1]
+        :<section=string(.)>]

@@ -1,0 +1,4 @@
+doc('http://proceedings.spiedigitallibrary.org/proceedingbrowse.aspx#year')
+  //*[@id='VolumeList_Year']//tbody/tr:<record>
+    [.//a:<title=normalize-space(.)>
+      :<url=qualify-url(@href)>]

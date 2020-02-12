@@ -1,0 +1,9 @@
+doc('http://electronicimaging.spiedigitallibrary.org/issues.aspx')
+  //ul[contains(@class, 'vTabs')]/li[contains(., '${volume}')]/{click /}
+    //*[contains(@class, 'contentContainer')]//*[contains(@class, 'issueContainer')]:<record>
+      [.:<volume="${volume}">]
+      [? .//*[@class='issueTitle']
+        :<issue=replace(normalize-space(.), ".*?(\d+).*", "$1")>]
+      [? .//*[@class='issueDate']
+        :<year=normalize-space(.)>
+        :<toc=qualify-url(@href)>]
