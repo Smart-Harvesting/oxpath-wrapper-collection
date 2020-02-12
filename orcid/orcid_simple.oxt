@@ -1,0 +1,11 @@
+doc("http://orcid.org/${id}", [wait=20])
+//*[@id='main']/div/div[1]/div/div/h2:<name=normalize-space(.)>
+  :<publications>
+  [../../../../div[2]//span[@ng-bind="work.title.value"]:<publication>
+    [.:<title=normalize-space(.)>]
+    [? ./../span[2]:<source=normalize-space(.)>]
+    /../../div[1]
+    [? ./span[1][(contains(.,"20")) or (contains(.,"19"))]:<year=normalize-space(.)>]
+    [./span[@ng-bind="work.workType.value"]:<type=normalize-space(.)>]
+    [? ./../../../div[2]//a[@class="truncate-anchor ng-scope"]:<doi=normalize-space(.)>]
+  ]
