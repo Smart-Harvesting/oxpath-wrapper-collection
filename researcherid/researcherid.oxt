@@ -1,0 +1,9 @@
+doc("http://www.researcherid.com/rid/${id}")
+//div/table[1]/tbody/tr/td[5]/select[2]/{click}/option[3]/{click/}
+//*[@id='ProfileView']/table/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div:<name=normalize-space(.)>/following::*[@id='resultContainer']/table[3]/tbody/tr/td[3]/table/tbody/tr/td[7]/span/img[@onclick="showNextPage()"]:<publications>
+  [./(//*[@id='resultContainer']/table[3]/tbody/tr/td[3]/table/tbody/tr/td[7]/span/img[@onclick="showNextPage()"]/{click})*
+  /ancestor::*[@id='resultContainer']/table[2]/tbody/tr/td[2]:<publication>
+    [.:<title=substring-before(substring-after(normalize-space(.),"Title: ")," Author(s):")>]
+    [.:<auSoPaPu=concat("Author(s): ", substring-before(substring-after(normalize-space(.),"Author(s): ")," DOI:"))>]
+    [.:<doi=substring-after(normalize-space(.),"DOI: ")>]
+  ]
