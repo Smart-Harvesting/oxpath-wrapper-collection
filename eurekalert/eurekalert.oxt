@@ -1,0 +1,6 @@
+doc("file://${filepath}")
+/body/p[1]/font:<date=substring-after(.,"Daily Embargoed EurekAlert! Express for Silvio Wenzel on ")>
+/following::p/font/strong/a:<publication>
+[.:<title=string(.)>]
+[.:<link=string(@href)>]
+[../../text():<embargo=substring-after(.,"Research News Release: ")>]
