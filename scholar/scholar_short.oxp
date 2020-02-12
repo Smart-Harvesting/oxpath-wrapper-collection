@@ -1,0 +1,5 @@
+doc("https://scholar.google.com/scholar?hl=en")
+    /descendant::field()[1]/{'OXPath'}/{pressenter /}
+    /(//a[contains(.,'Next')]/{click/})*{0,1}
+      //div[@class='gs_r']:<paper>[.//h3:<title=string(.)>]
+        [? .//*[@class='gs_a']:<authors=substring-before(.,' - ')>]

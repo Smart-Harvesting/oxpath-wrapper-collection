@@ -1,0 +1,8 @@
+doc("https://scholar.google.com/scholar?hl=en")
+    /descendant::field()[1]/{'${query}'}/{pressenter [wait=60]/}
+    /(//a[contains(.,'Next')]/{click/})*{0,2}
+    //div[@class='gs_r']:<paper>[.//h3:<title=string(.)>]
+      [? .//*[@class='gs_a']:<authors=substring-before(.,' - ')>]
+      [? .//a[contains(.,'Cited by')]/{click /}
+        //div[@class='gs_r']:<cited_by>[.//h3:<title=string(.)>]
+          [.//*[@class='gs_a']:<authors=substring-before(.,' - ')>]]

@@ -1,0 +1,20 @@
+doc('https://scholar.google.de/citations?user=${id}&hl=de')
+//*[@id='gsc_prf_in']:<name=string(.)>
+  :<publications>
+  /(//*[@id='gsc_bpf_next']/{nextclick /})*/.
+  [
+    //*[@id='gsc_a_b']/tr/td[1]/a/{click [wait=3] /}
+    /.:<publication>
+      [//*[@id='gsc_title']:<title=string(.)>]
+      //*[@id='gsc_table']
+          [./div[@class='gs_scl'][./div[@class='gsc_field']#='Autoren']/div[@class='gsc_value']:<authors=string(.)>]
+          [./div[@class='gs_scl'][./div[@class='gsc_field']#='Publikationsdatum']/div[@class='gsc_value']:<date=string(.)>]
+             [.:<source>
+              [?./div[@class='gs_scl'][./div[@class='gsc_field']#='Zeitschrift']/div[@class='gsc_value']:<type='journal'>:<title=string(.)>]
+              [?./div[@class='gs_scl'][./div[@class='gsc_field']#='Buch']/div[@class='gsc_value']:<type='collection'>:<title=string(.)>]
+              [?./div[@class='gs_scl'][./div[@class='gsc_field']#='Band']/div[@class='gsc_value']:<volume=string(.)>]
+              [?./div[@class='gs_scl'][./div[@class='gsc_field']#='Ausgabe']/div[@class='gsc_value']:<issue=string(.)>]
+              [?./div[@class='gs_scl'][./div[@class='gsc_field']#='Seiten']/div[@class='gsc_value']:<pages=string(.)>]
+              [?./div[@class='gs_scl'][./div[@class='gsc_field']#='Verlag']/div[@class='gsc_value']:<publisher=string(.)>]
+             ]
+  ]
