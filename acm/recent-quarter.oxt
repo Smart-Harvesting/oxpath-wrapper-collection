@@ -1,0 +1,18 @@
+doc('http://dl.acm.org/advsearch.cfm')
+  //*[@id='fld0']/optgroup[1]/option[5]/{click /}
+  //*[@id='how0']/option[4]/{click /}
+  //*[@id='dte0']/option[@value='${start.year}']/{click /}
+  //*[@id='submit']/input/{click /}
+    //*[@id='ACM_Publications_list']//a[contains(., 'Proceeding')]/{click /}
+    //*[@id='sortmenu']//option[@value='publicationDate']/{click /}
+      /(/.[not(.//*[@class='publicationDate' and (contains(., '${poison.pill}'))])]//*[@class="pagelogic"][1]/span[./strong]/following-sibling::span[./a][1]/{click[wait=5] /})*
+        //*[@id='results']/div[contains(@class, 'details')]:<record>
+        [? .//div[@class='source']/span[2]
+          :<header=normalize-space(.)>
+          :<title=substring-after(normalize-space(.), ': ')>
+          :<conference=substring-before(normalize-space(.), ': ')>
+        ]
+        [? .//div[@class='title']//a
+          :<section=normalize-space(.)>
+          :<url=qualify-url(@href)>
+        ]

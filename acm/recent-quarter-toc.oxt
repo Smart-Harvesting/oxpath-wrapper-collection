@@ -1,0 +1,9 @@
+doc('${url}', [wait=5])
+  //*[@id='divmain']:<record>
+    [.:<header="${header}">
+      :<title=substring-after(normalize-space("${header}"), ': ')>
+      :<conference=substring-before(normalize-space("${header}"), ': ')>]
+    [? .//a[contains(@href, '&picked=prox')]
+      :<url=substring-before(qualify-url(@href), "&cfid")>]
+    [? .//a[contains(@href, 'doi.org')]
+      :<doi=replace(normalize-space(@href), ".*?(10\.\d{4,}\/\d*?)\..*", "$1")>]
