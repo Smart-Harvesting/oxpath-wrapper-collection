@@ -1,0 +1,8 @@
+doc('http://ieeexplore.ieee.org/document/1182063/authors?ctx=authors')
+  //section[contains(@class, 'all-authors')]
+    //*[contains(@class, 'author-container')]:<author>
+      [? .//*[contains(@*, 'name')]:<name=normalize-space(.)>]
+      [? .//*[contains(@*, 'orcid')]/a:<orcid=substring-after-reverse(@href, '/')>]
+      [? .//*[contains(@*, 'affiliation')]:<affiliation=normalize-space(.)>]
+      [? .//*[contains(./comment(), 'bio.p')]
+        :<bio=normalize-space(string-join(./*[contains(@*, 'biop')], ' '))>]

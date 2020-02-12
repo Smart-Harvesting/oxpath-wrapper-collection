@@ -1,0 +1,5 @@
+doc('${url}')
+  //*[contains(@class, 'volume')]//li/a[contains(., 'Vol: ${volume}')]:<record>
+    [? .:<volume=replace(normalize-space(.), ".*?Vol.*?(\d+(-\d+)?).*?Issue.*?(\d+(-\d+)?).*", "$1")>]
+    [?.:<issue=replace(normalize-space(.), ".*?Vol.*?(\d+(-\d+)?).*?Issue.*?(\w?\d+(-\w?\d+)?).*", "$3")>]
+    [? .:<toc=qualify-url(@href)>]

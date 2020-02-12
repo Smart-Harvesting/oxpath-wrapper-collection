@@ -1,0 +1,15 @@
+doc('${url}')
+  //*[./@ui-view]/*[contains(@class, 'stats-document')]:<record>
+    [? .//*[contains(@class, 'abstract-text')]:<abstract=normalize-space(.)>]
+    [? .//*[contains(@class, 'abstract-pubdate')]/text()[normalize-space()]:<date=normalize-space(.)>]
+    [? .//*[contains(@ng-if, "vm.details.accessionNumber")]/text()[normalize-space()]:<ee=normalize-space(.)>]
+    [? .//*[contains(@class, 'abstract-doi')]/a:<doi=normalize-space(.)>]
+    //*[@id='document-tabs']//*[@title='Authors']/{click /}
+      //a[contains(@class, 'view-all')]/{click /}/.
+        [? .//section[contains(@class, 'all-authors')]:<author-list>
+          [? .//*[contains(@class, 'author-container')]:<author>
+            [? .//*[contains(@*, 'name')]:<name=normalize-space(.)>]
+            [? .//*[contains(@*, 'orcid')]/a:<orcid=substring-after-reverse(@href, '/')>]
+            [? .//*[contains(@*, 'affiliation')]:<affiliation=normalize-space(.)>]
+            [? .//*[contains(./comment(), 'bio.p')]
+              :<bio=normalize-space(string-join(./*[contains(@*, 'biop')], ' '))>]]]

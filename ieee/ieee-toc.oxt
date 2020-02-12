@@ -1,0 +1,18 @@
+doc('${url}')
+  /(//*[@class='pagination']//a[contains(@class, 'next')]
+      [not(contains(@onclick, concat("'", string(./preceding-sibling::a/strong/text()), "'")))]
+      /{click[wait=1] /})*
+    //ul[@class='results']/li[.//h3]:<record>
+      [.//h3
+        :<title=normalize-space(.)>]
+      [? .//h3/a
+        :<details=qualify-url(@href)>]
+      [? .//a[contains(@aria-label, 'PDF')]
+        :<pdf=qualify-url(@href)>]
+      [? .//a[contains(@aria-label, 'HTML')]
+        :<url=qualify-url(@href)>]
+      [? .//*[@class='authors']:<authors=normalize-space(string-join(./a/text()[normalize-space()], '; '))>]
+      [? ./*[@class='txt']/text()[normalize-space()][contains(., 'Publication')]
+        :<year=replace(normalize-space(.), ".*?Year:.*?(\d{4}),.*?Page\(s\):(.*)", "$1")>
+        :<pages=replace(normalize-space(.), ".*?Year:.*?(\d{4}),.*?Page\(s\):(.*)", "$2")>
+      ]
