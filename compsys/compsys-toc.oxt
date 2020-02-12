@@ -1,0 +1,15 @@
+doc('${url}')
+  //*[@id='main']//h3:<record>
+    [? ./a[1]
+      :<details=qualify-url(@href)>
+      :<title=normalize-space(.)>
+    ]
+    [? ./a[1]
+      :<details=qualify-url(@href)>
+      :<title=normalize-space(.)>
+    ]
+    [? ./following::p[1]:<authors=normalize-space(string-join(./text()[normalize-space()], "; "))>]
+    [? ./preceding::h2
+      :<volume=replace(normalize-space(.), ".*?Volume.*?(\d+).*?Issue.*?(\d+)", "$1")>
+      :<issue=replace(normalize-space(.), ".*?Volume.*?(\d+).*?Issue.*?(\d+)", "$2")>
+    ]

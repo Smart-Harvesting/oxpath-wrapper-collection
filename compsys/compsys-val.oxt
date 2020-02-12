@@ -1,0 +1,3 @@
+doc('${url}')
+  //*[contains(@class, 'logoSmall')]/img
+    :<title=normalize-space(@title)>

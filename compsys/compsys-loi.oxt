@@ -1,0 +1,7 @@
+doc('${url}')
+  //*[contains(@class, 'issuex')]:<record>
+    [./a
+      :<toc=qualify-url(@href)>
+      :<volume=replace(normalize-space(@title), ".*?Vol.*?(\d+).*?No.*?(\d+)", "$1")>
+      :<issue=replace(normalize-space(@title), ".*?Vol.*?(\d+).*?No.*?(\d+)", "$2")>
+    ]
